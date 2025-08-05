@@ -1,0 +1,38 @@
+﻿@using System.Web
+@model ProductsViewModel
+
+@{
+	ViewBag.PageTitle = "Product Management";
+	ViewBag.CardTitle = "Create Product";
+	ViewData["Title"] = "Products";
+}
+<div class="mb-3">
+	<a class="btn btn-primary" asp-action="Add" asp-controller="Category">Create New Category</a>
+</div>
+
+<div id="categoryTableContainer">
+	<table class="table table-bordered table-striped table-hover datatable">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">Product Name</th>
+			<th scope="col">Description</th>
+			<th scope="col">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+			@foreach (var item in Model.Products)
+			{
+				<tr>
+					<td>@item.Name</td>
+					<td>@item.Description</td>
+					<td>
+						<a asp-action="Edit" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-sm btn-warning mr-2">Edit</a>
+							<input type="button" class="btn btn-sm btn-danger" onclick="Delete('@item.Id')" value="Delete" />
+						</td>
+				</tr>
+			}
+	</tbody>
+</table>
+</div>
+
+<script src="/Modules/Products.js"></script>
